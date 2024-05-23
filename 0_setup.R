@@ -5,15 +5,8 @@
 # set computer
 cpu <- "laptop"  # "pc", "mac". "server"
 
-# If you want to give MaxEnt (the Java virtual machine that runs it) more memory,
-# you can do that by running something like this (for 1 GB) before you load the dismo library.
-options(java.parameters = "-Xmx4g" )
-
-# Set project projections
-crs_proj <- "+init=epsg:4326"
-
 # Set main data paths
-if(cpu == "laptop") main_dir <- "C:/Users/david/OneDrive/Escritorio/Survival/chondrichthyan_mortality"
+if(cpu == "laptop") main_dir <- "C:/YOUR_PATH"
 
 # 2. Create data paths
 input_data <- paste(main_dir, "input", sep="/")
