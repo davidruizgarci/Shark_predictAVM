@@ -1,5 +1,6 @@
 # Shark_predictAVM
-Here is a series of scripts to extract enviromental variables, select depth layers from 4D netCDFs, and fit BRT models
+Here is a series of scripts to extract enviromental variables, select depth layers from 4D netCDFs, and fit BRT models.
+[![DOI](https://zenodo.org/badge/804754904.svg)](https://zenodo.org/doi/10.5281/zenodo.11259543)
 
 ### Scripts available
 *1_Preparing_dataframe*: Data organising.
