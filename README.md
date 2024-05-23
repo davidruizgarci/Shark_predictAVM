@@ -2,7 +2,7 @@
 Here is a series of scripts to extract enviromental variables, select depth layers from 4D netCDFs, and fit BRT models
 
 ### Scripts available
-*1_Preparing_dataframe*: Data organising
+*1_Preparing_dataframe*: Data organising.
 
 *2_Obtaining_Enviro_data*: Enables downloading data from CMEMS (future research - requiered update to Python) and ERA5 (Copernicus) and enables extracting the enviromental data to the surveyed points.
 
