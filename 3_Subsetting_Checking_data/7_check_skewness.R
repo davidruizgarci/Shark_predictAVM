@@ -1,5 +1,5 @@
 #-----------------------------------------------------------------
-# Check skewness in predictors and log transform if needed
+# 7_check_skewness.R     Check skewness in predictors and log transform if needed
 #-----------------------------------------------------------------
 sp_code <- "Sca" #Sca, Gme, Esp, Tma
 

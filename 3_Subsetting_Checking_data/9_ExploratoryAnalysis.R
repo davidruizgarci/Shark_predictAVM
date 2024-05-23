@@ -1,12 +1,12 @@
 #---------------------------------------------------------------------------------------------------
-# Exploratory data analysis
+# 9_ExploraotyAnalysis.R     Exploratory data analysis
 #---------------------------------------------------------------------------------------------------
-sp_code <- "Gme" #Sca, Gme, Esp, Tma
+sp_code <- "Sca" #Sca, Gme, Esp, Tma
 
 #Load data
 wd<- paste0(output_data, "/data_subsets")
 setwd(wd)
-data <- read.csv("Gmelastomus.csv", sep = ";") #Scanicula #Gmelastomus #Espinax #Tmarmorata
+data <- read.csv("Scanicula.csv", sep = ";") #Scanicula #Gmelastomus #Espinax #Tmarmorata
 names(data)
 head(data)
 
@@ -137,8 +137,6 @@ p <- grid.arrange(p1, p2,p3,p4,
                   p5, p7, p8,p9,
                   p10, p11, p12, p13,
                   layout_matrix = lay) 
-#all: p15, p16, 
-#Gme, Esp: p6, 
 
 #' Those variables in which the blue and the red curves are very similar
 #' may not be good predictors of the response variable.

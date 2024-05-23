@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------------
-# Extract 3D data from raster to points   
+# 4_2_extract_3D_RasterPoint.R   Extract 3D data from raster to points   
 #------------------------------------------------------------------------------------
 
 # import data

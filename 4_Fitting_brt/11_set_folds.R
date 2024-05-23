@@ -1,14 +1,15 @@
 #---------------------------------------------------------------------------------------------------
-# Fit the Boosted Regression Tree model (BRT; frequently used as species distribution model)
+# 11_set_folds.R      Fit the Boosted Regression Tree model (BRT; frequently used as species distribution model)
 #---------------------------------------------------------------------------------------------------
 # As mentioned previously, I will use all data to fit the model and check the model using cross-validation,
 # instead of a training and testing data sets.
-sp_code <- "Gme" #Sca, Gme, Esp, Tma
+
+sp_code <- "Sca" #Sca, Gme, Esp, Tma
 
 #Load data
 wd<- paste0(output_data, "/data_subsets")
 setwd(wd)
-data <- read.csv("Gmelastomus.csv", sep = ";") #Scanicula #Gmelastomus #Espinax #Tmarmorata
+data <- read.csv("Scanicula.csv", sep = ";") #Scanicula #Gmelastomus #Espinax #Tmarmorata
 names(data)
 head(data)
 

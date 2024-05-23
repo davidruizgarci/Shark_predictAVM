@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------------
-# Download CMEMS data      
+# 2_enviroCMEMS.R    Download CMEMS data      
 #------------------------------------------------------------------------------------
 
 # Define the name of the file and the destination
@@ -47,8 +47,8 @@ for(i in 1:nrow(catalog)){
 # Define the full file path including the file name
   file_path <- file.path(dir_path, file_name)
   
-# start the download
-  copernicus_download_motu(username = username,
+# start the download (See https://github.com/pepijn-devries/CopernicusMarine - potential updates may be needed, currently only Python works)
+  cms_download_subset(username = username,
                            password = password,
                            destination = file_path,
                            product = catalog$service[i],
@@ -61,8 +61,3 @@ for(i in 1:nrow(catalog)){
                            sub_variables = catalog$subvar[i],
                            overwrite = TRUE)
 }
-
-wd <- paste0(output_data, "/cmems/MEDSEA_ANALYSISFORECAST_PHY_006_013/cmems_mod_med_phy-tem_anfc_4.2km_P1D-m/")
-setwd(wd)
-nc <- nc_open(".nc")
-

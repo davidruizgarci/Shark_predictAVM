@@ -1,16 +1,16 @@
 #---------------------------------------------------------------------------------------------------
-# 2_raincloudPlot    Plot data distribution with raincloud (violin plots and box plots)
+# 2_raincloudPlot.R    Plot data distribution with raincloud (violin plots and box plots) + calculate mean values
 #---------------------------------------------------------------------------------------------------
 #REFERENCE: https://www.smin95.com/dataviz/raincloud-and-forest-plots
-pacman::p_load(readxl, cowplot, gghalves, tidyverse, gridExtra, install = FALSE)
 
+#Load packages:
+pacman::p_load(readxl, cowplot, gghalves, tidyverse, gridExtra, install = FALSE)
 #devtools::install_github('smin95/smplot2', force = TRUE)
 library(smplot2)
 
-# load data
 #Load data
 setwd(input_data)
-data <- read.csv("data_env_all.csv", sep = ";") #AVM_PRM_all.csv for PRM
+data <- read.csv("data_env_all.csv", sep = ";") 
 names(data)
 head(data)
 #Set categorical predictors as categories:
@@ -70,6 +70,10 @@ df_Gme <-  filter(data, Species == 'Gmelastomus')
 
 # color palette
 sm_palette(20)
+
+#----------------------------------------------------------------------------------- 
+# 1. Make raincloud plots for each predictor used in the BRT
+#----------------------------------------------------------------------------------- 
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Depth
@@ -558,11 +562,12 @@ if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 p_png <- paste0(outdir, "/TL_females.png")
 ggsave(p_png, p10, width=12, height=10, units="cm", dpi=300)
 
-###################################################################################
+
 #----------------------------------------------------------------------------------- 
 # 2. What is the mean +- SD for gear values for each tow? and for min an max values?
 #----------------------------------------------------------------------------------- 
-###################################################################################
+
+
 # Group the data by tows and calculate mean and standard deviation for the specified columns, which are:
 names(data)
 # "Net_horizontal_opening", "Distance_covered_GPS", "Average_speed", "Trawl_duration", "MinsExposedtoAir", "depth"

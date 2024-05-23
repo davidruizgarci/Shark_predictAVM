@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------------------------------
-# Optimization of BRT hyper-parameters (see Appendix 1 for a summary of Elith et al. 2008 recommendations)
+# 12_fit_brt.R    Optimization of BRT hyper-parameters (see Appendix 1 for a summary of Elith et al. 2008 recommendations)
 #---------------------------------------------------------------------------------------------------
 
 # --- --- --- --- ---

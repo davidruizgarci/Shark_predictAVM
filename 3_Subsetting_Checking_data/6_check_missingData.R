@@ -1,12 +1,12 @@
 #-----------------------------------------------------------------
-# Check missing data in predictors
+#  6_check_missingData     Check missing data in predictors
 #-----------------------------------------------------------------
-sp_code <- "Sca" #Sca, Gme, Esp, Tma
+sp_code <- "Sca" #replace by the file name: Sca, Gme, Esp, Tma
 
 #Load data
 wd<- paste0(output_data, "/data_subsets")
 setwd(wd)
-data <- read.csv("Tmarmorata.csv", sep = ";") #Scanicula #Gmelastomus #Espinax #Tmarmorata
+data <- read.csv("Scanicula.csv", sep = ";") #replace by the file name: Scanicula #Gmelastomus #Espinax #Tmarmorata
 names(data)
 head(data)
 

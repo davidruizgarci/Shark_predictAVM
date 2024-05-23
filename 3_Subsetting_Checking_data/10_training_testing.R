@@ -1,10 +1,11 @@
 #---------------------------------------------------------------------------------------------------
-# Create training and testing data sets:
+# 10_training_tested     Create training and testing data sets (NOT USED FOR THIS STUDY)
 #---------------------------------------------------------------------------------------------------
 # It may not be interesting creating a training and testing if data is limited.
 # Especially when you will check the model using cross-validation and bootstrap. 
 # You can create and then decide whether you will use it or not.
 # In my case I won't use it as I am already using cross-validation.
+
 sp_code <- "Sca" #Sca, Gme, Esp, Tma
 
 #Load data

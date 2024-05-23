@@ -1,11 +1,11 @@
 #---------------------------------------------------------------------------------------------------
-# plot_brt_boot_partial          Plot BRT partial effects using bootstrap
+# 13_plot_brt_boot_partial.R          Plot BRT partial effects using bootstrap
 #---------------------------------------------------------------------------------------------------
 
 mod_code <- "brt"
 bootstrap <- T
 n_boot <- 100
-sp_code <- "Gme" #Sca, Gme, Esp, Tma
+sp_code <- "Sca" #Sca, Gme, Esp, Tma
 
 #---------------------------------------------------------------
 # 1. Set data repository
@@ -64,9 +64,9 @@ for(i in 1:n_var){
   idf <- data.frame(
     var = pred.names[i],
     xval = gbm_list[[i]]$X1,
-    med = boot_med[,i],
-    cil = boot_cil[,i],
-    ciu = boot_ciu[,i]
+    med = boot_med[,i], 
+    cil = boot_cil[,i], 
+    ciu = boot_ciu[,i] 
   )
   #append
   data_list[[i]] <- idf
@@ -90,8 +90,8 @@ data2 <- filter(data, var %in% mod$contributions$var[1:n_plots])
 
 # plot: #orange for S canicula and #steelbluefor G melastomus
 p <- ggplot(data2, aes(x = xval)) +
-  geom_ribbon(aes(ymin = cil, ymax = ciu), fill="steelblue", alpha=.2, linetype=0) +
-  geom_line(aes(y = med), color="steelblue") +
+  geom_ribbon(aes(ymin = cil, ymax = ciu), fill="orange", alpha=.2, linetype=0) +
+  geom_line(aes(y = med), color="orange") +
   ylab("Fitted function") + xlab("") +
   facet_wrap(var~., scales = "free_x", ncol =2, strip.position = "bottom", labeller=labeller(var=labels)) +
   theme_article(base_size = 14) +

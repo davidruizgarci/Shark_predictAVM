@@ -1,12 +1,12 @@
 #-----------------------------------------------------------------
-# Check correlation between predictors using pearson
+# 8_check_correlation.R    Check correlation between predictors using pearson
 #-----------------------------------------------------------------
 sp_code <- "Sca" #Sca, Gme, Esp, Tma
 
 #Load data
 wd<- paste0(output_data, "/data_subsets")
 setwd(wd)
-data <- read.csv("Scanicula.csv", sep = ";") #Scanicula #Gmelastomus #Espinax #Tmarmorata #Scanicula_PRM #Gmelastomus_PRM
+data <- read.csv("Scanicula.csv", sep = ";") #Scanicula #Gmelastomus #Espinax #Tmarmorata
 names(data)
 head(data)
 

@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------------------------------
-# Map plotting         Plot sampling stations
+# 1_Map.R         Map plotting: Plot sampling stations
 #---------------------------------------------------------------------------------------------------
 pacman::p_load("magrittr", "ggshadow", "giscoR", "ggforce", "terra", "ggspatial", "raster", "rnaturalearth", "ggplot2","marmap", "terra", "tidyterra", "sf", "sfheaders", "ggforce", install=FALSE)
 
@@ -227,7 +227,7 @@ p_png <- paste0(outdir, "/FullAreaGlobe.jpeg")
 ggsave(p_png, g2, width=17, height=17, units="cm", dpi=300)
 
 #---------------------------------------------------------------
-# 3.2. 2D World globe base map
+# 3.2. 2D World globe base map (not used in my case)
 #---------------------------------------------------------------
 
 ## Create a ggplot object

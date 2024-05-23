@@ -1,10 +1,10 @@
 #---------------------------------------------------------------------------------------------------
-# plot_brt_boot_var_influence          Plot BRT variable relative incluence using bootstrap
+# 14_plot_brt_boot_var_influence.R          Plot BRT variable relative influence using bootstrap
 #---------------------------------------------------------------------------------------------------
 mod_code <- "brt"
 bootstrap <- T
 n_boot <- 100
-sp_code <- "Gme" #Sca, Gme, Esp, Tma
+sp_code <- "Sca" #Sca, Gme, Esp, Tma
 
 #---------------------------------------------------------------
 # 1. Set data repository
@@ -55,7 +55,7 @@ data$var <- factor(data$var, levels = data$var)
 
 # plot: #orange for S canicula and #steelblue for G melastomus
 p <- ggplot(data=data, mapping=aes(x=var, y=median, ymin=cil, ymax=ciu)) + 
-  geom_pointrange(col="steelblue") +
+  geom_pointrange(col="orange") +
   coord_flip() +
   ylab("Relative influence (%)") + xlab("") +
   theme_article(base_size = 14) +

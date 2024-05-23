@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------------
-# Extract 2D data from raster to points   
+# 4_1_extract_2D_RasterPoint.R     Extract 2D data from raster to points   
 #------------------------------------------------------------------------------------
 
 #Load data
@@ -56,25 +56,7 @@ date_times <- reference_time + as.difftime(nctime, units = "mins")
 #Open brick:
 sbt_reanalysis<- brick("SBT_Reanalysis_01-12-2020_30-06-2022.nc")
 
-# (3) sbt_analysis
-#wd<-paste0(output_data, "/cmems/MEDSEA_MULTIYEAR_PHY_006_004/med-cmcc-tem-rean-d")
-#setwd(wd)
-#
-##Check parameters:
-#nc<- nc_open("SBT_Reanalysis_01-12-2020_30-06-2022.nc")
-#print(nc)
-#nclon <- nc$dim$lon$vals#ncvar_get(nc, varid="lon") # nc$dim$lon$vals => same or faster?
-#nclat <- nc$dim$lat$vals#ncvar_get(nc, varid="lat") 
-#nctime <- nc$dim$time$vals
-#ncday <-  as.numeric(as.POSIXct(nctime, origin = "1970-01-01 00:00:00", tz = "UTC"))
-#reference_time <- as.POSIXct("1900-01-01", tz = "UTC")
-#date_times <- as.difftime(nctime, units = "mins")
-#date_times 
-
-##Open brick:
-#sbt_reanalysis<- brick("SBT_Reanalysis_01-12-2020_30-06-2022.nc")
-
-# (4) sst_reanalysis
+# (3) sst_reanalysis
 wd<-paste0(output_data, "/ERA5/SST_reanalysis")
 setwd(wd)
 
@@ -93,14 +75,14 @@ SST_2022<- brick("SST_2022.nc")
 SST_2021<- brick("SST_2021.nc")
 SST_2020<- brick("SST_2020.nc")
 
-# (5) Bathymetry (depth)
+# (4) Bathymetry (depth)
 wd<-paste0(output_data, "/EMODnet/Bathy")
 setwd(wd)
 bathy<- raster("Bathy.tif")
 bathy
 plot(bathy)
 
-# (6) Substrate
+# (5) Substrate
 wd<-paste0(output_data, "/EMODnet/Subs")
 setwd(wd)
 subs<- raster("Sed_Raster.tif")
@@ -126,13 +108,6 @@ time <- getZ(AT_2022)
 time_hours <- as.POSIXct(time, origin = "1900-01-01", tz = "UTC") 
 AT_2022 <- setZ(AT_2022, z = time_hours)
 AT_2022
-
-##sbt_analysis
-#time <- getZ(sbt_analysis)
-#time <- as.POSIXct(time*60, origin = "1900-01-01", tz = "UTC") 
-#days <- as.Date(time)
-#sbt_analysis <- setZ(sbt_analysis, z = days)
-#sbt_analysis
 
 #sbt_reanalysis
 time <- getZ(sbt_reanalysis)
@@ -174,11 +149,6 @@ extractTSR <- function(x, y, t){
   dat <- ex[cbind(1:length(t), idx)]
   return(dat)
 }
-
-# extract data from Time Series Raster
-#sbt_analysis
-#data$sbt_analysis <- extractTSR(x = sbt_analysis, y = cbind(data$lon, data$lat), t = data$time)
-#View(data)
 
 #sbt_reanalysis
 data$sbt_reanalysis <- extractTSR(x = sbt_reanalysis, y = cbind(data$lon, data$lat), t = data$time)

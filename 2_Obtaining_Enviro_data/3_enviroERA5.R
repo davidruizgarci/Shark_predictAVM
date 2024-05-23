@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------------
-# Download ERA5 data      
+# 3_enviroERA5.R    Download ERA5 data      
 #------------------------------------------------------------------------------------
 #Select unique values from your dates
 setwd(output_data)
