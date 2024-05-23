@@ -10,4 +10,6 @@ Here is a series of scripts to extract enviromental variables, select depth laye
 
 *4_Fitting_brt.R*: Enables fitting a brt model applied to predict at-vessel mortality (AVM) for demersal sharks using biological, enviromental and fishing operation drivers.
 
-*4_Plots*: Create study map and raincloud plots as data summary. 
+*5_Plots*: Create study map and raincloud plots as data summary. 
+
+*Appendix 1*: theoretical recommendations and training on BRT fitting
