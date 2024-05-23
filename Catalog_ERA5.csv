@@ -1,0 +1,2 @@
+﻿var_name;id_product;provider;service;layer;variable;units;date_min;date_max;year_min;year_max;month_min;month_max;day_min;day_max;time_min;time_max;product_type;temporal_resolution;spatial_resolution;var;xmin;xmax;ymin;ymax
+AT_Reanalysis;1;ERA5;reanalysis-era5-single-levels;;2m_temperature;ºF;2020-01-01;2022-12-31;2020;2022;1;12;1;31;06:00;17:00;reanalysis;hourly;0.25° x 0.25°;AT;-2;4;36;43
