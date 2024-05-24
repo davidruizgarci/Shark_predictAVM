@@ -157,3 +157,17 @@ plot(varclus(v, similarity=c("spearman"),data=data),cex=.8) # plot cluster
 abline(a=0.30,0,col="grey70",lty=1,lwd=2)
 par(op)
 dev.off()
+
+# Plot linear relationship between at_celsius and diff_sst_sbt (Gme steelblue, Sca orange)
+plot <- ggplot(data, aes(x = at_celsius, y = diff_at_sbt)) +
+  stat_smooth(method = "lm", se = TRUE, color = "black") +  # Add a linear regression line with confidence intervals
+  geom_point(color = "orange", size = 2, alpha = 0.5) +  # Add scatter points with size and color based on mean_bodymass and mean_depth
+  labs(x = "ATEMP (°C)", y = "Difference between ATEMP and BOTTEMP (°C)") +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        axis.line = element_line(color = "black"),
+        axis.ticks = element_line(color = "black"))  # Customize axis lines and ticks
+plot
+
+p_png <- paste0(output_dir, "/ATEMP_DTEMP.png")
+ggsave(p_png, plot, width=10, height=10, units="cm", dpi=300)
