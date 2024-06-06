@@ -159,10 +159,10 @@ par(op)
 dev.off()
 
 # Plot linear relationship between at_celsius and diff_sst_sbt (Gme steelblue, Sca orange)
-plot <- ggplot(data, aes(x = at_celsius, y = diff_at_sbt)) +
+plot <- ggplot(data, aes(x = ATEMP, y = DTEMP)) +
   stat_smooth(method = "lm", se = TRUE, color = "black") +  # Add a linear regression line with confidence intervals
   geom_point(color = "orange", size = 2, alpha = 0.5) +  # Add scatter points with size and color based on mean_bodymass and mean_depth
-  labs(x = "ATEMP (°C)", y = "Difference between ATEMP and BOTTEMP (°C)") +
+  labs(x = "ATEMP (°C)", y = "DTEMP (°C)") +
   theme_minimal() +
   theme(panel.grid = element_blank(),
         axis.line = element_line(color = "black"),

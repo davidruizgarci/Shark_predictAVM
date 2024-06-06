@@ -363,6 +363,7 @@ phi <- 40    # Adjust the polar angle as desired
 pngfile <- paste0(outdir_interaction, "/", sp_code, "_", mod_code, "_interaction_2.png")
 png(pngfile, width=1500, height=1500, res=200)
 dismo::gbm.perspec(mod_full, 4, 1, theta = theta, phi = phi, smooth = 0.5)
+
 dev.off()
 
 pngfile <- paste0(outdir_interaction, "/", sp_code, "_", mod_code, "_interaction_3.png")
@@ -370,9 +371,92 @@ png(pngfile, width=1500, height=1500, res=200)
 dismo::gbm.perspec(mod_full, 9, 1, theta = theta, phi = phi, smooth = 0.5)
 dev.off()
 
-#dismo::gbm.perspec(mod_full, 7, 2)
-#dismo::gbm.perspec(mod_full, 4, 2)
+#Another option is to create 3D plots based on response variable values and take a screeenshot
 
+#ATEMP vs DECK
+# Generate partial dependence data
+partial_dep <- plot(mod_full, i.var = c(9, 1), return.grid = TRUE)
+# Extract the grid data
+at_celsius <- partial_dep[[1]]
+TL <- partial_dep[[2]]
+predicted <- matrix(partial_dep[[3]], nrow = length(unique(at_celsius)), byrow = TRUE)
+
+# Generate color ramp based on viridis
+colors <- colorRampPalette(rev(brewer.pal(11, "Spectral")))(256)
+# Map predicted values to colors
+z_range <- range(predicted, na.rm = TRUE)
+color_indices <- as.numeric(cut(predicted, breaks = 256))
+plot_colors <- colors[color_indices]
+
+# Create the 3D plot
+persp3d(x = unique(at_celsius), y = unique(TL), z = predicted,
+        xlab = "at_celsius", ylab = "TL", zlab = "Partial Dependence",
+        col = plot_colors)
+
+rgl.postscript("interaction_plot.pdf", fmt = "pdf")
+
+#ATEMP vs DECK
+# Generate partial dependence data
+partial_dep <- plot(mod_full, i.var = c(9, 4), return.grid = TRUE)
+# Extract the grid data
+at_celsius <- partial_dep[[1]]
+MinsExposedtoAir <- partial_dep[[2]]
+predicted <- matrix(partial_dep[[3]], nrow = length(unique(at_celsius)), byrow = TRUE)
+
+colors <- colorRampPalette(rev(brewer.pal(11, "Spectral")))(256)
+# Map predicted values to colors
+z_range <- range(predicted, na.rm = TRUE)
+color_indices <- as.numeric(cut(predicted, breaks = 256))
+plot_colors <- colors[color_indices]
+
+# Create the 3D plot
+persp3d(x = unique(at_celsius), y = unique(MinsExposedtoAir), z = predicted,
+        xlab = "at_celsius", ylab = "MinsExposedtoAir", zlab = "Partial Dependence",
+        col = plot_colors)
+
+#TL vs DECK
+# Generate partial dependence data
+partial_dep <- plot(mod_full, i.var = c(4, 1), return.grid = TRUE)
+# Extract the grid data
+DECK <- partial_dep[[1]]
+TL <- partial_dep[[2]]
+predicted <- matrix(partial_dep[[3]], nrow = length(unique(at_celsius)), byrow = TRUE)
+
+colors <- colorRampPalette(rev(brewer.pal(11, "Spectral")))(256)
+# Map predicted values to colors
+z_range <- range(predicted, na.rm = TRUE)
+color_indices <- as.numeric(cut(predicted, breaks = 256))
+plot_colors <- colors[color_indices]
+
+# Create the 3D plot
+persp3d(x = unique(TL), y = unique(DECK), z = predicted,
+        xlab = "DECK", ylab = "tl", zlab = "Partial Dependence",
+        col = plot_colors)
+
+#Plot legend:
+# Define data for the legend
+legend_data <- data.frame(values = seq(0, 256, length.out = 100))
+
+# Create a ggplot object with a blank layer
+p1 <- ggplot(legend_data, aes(x = 1, y = values, fill = values)) +
+  geom_tile() +
+  scale_fill_gradientn(colors = colors,
+                       name = "Fitted value", limits = c(0, 256), breaks = pretty(c(0, 256), n = 4))
+# Remove axis labels and ticks
+p1 <- p1 + theme(panel.grid = element_blank(),
+                 axis.text.x = element_blank(),
+                 axis.text.y = element_blank(),
+                 axis.ticks = element_blank(),
+                 axis.title.x = element_blank(),
+                 axis.title.y = element_blank(),
+                 legend.position = "right")
+
+# Display the plot
+print(p1)
+
+# export plot
+p_png <- paste0(outdir_interaction, "/Legend.jpeg")
+ggsave(p_png, p1, width=17, height=17, units="cm", dpi=300)
 #-----------------------------------------------------------------
 # Boosted Regression Tree - Predict (Bootstrap approach)
 #-----------------------------------------------------------------
